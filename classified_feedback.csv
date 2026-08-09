@@ -1,0 +1,26 @@
+id,date,customer,feedback,sentiment,topic,urgency
+1,2026-07-01,Müller & Söhne GmbH,"Das neue Portal ist deutlich übersichtlicher, danke für das Update!",positive,praise,low
+2,2026-07-01,TechStart Berlin,Die Rechnung für Juni enthält Positionen die wir nie bestellt haben. Bitte dringend prüfen!,negative,billing,high
+3,2026-07-02,Hansen Logistics,"Login schlägt seit heute Morgen fehl, Fehlermeldung AADSTS50076. Komplettes Team betroffen!",negative,bug,high
+4,2026-07-02,GreenEnergy AG,"Wäre es möglich, die Reports auch als CSV zu exportieren? Aktuell gibt es nur PDF.",neutral,feature_request,low
+5,2026-07-03,DataFlow Solutions,"The migration went smoothly, your support team was fantastic. Special thanks to the engineer on call.",positive,praise,low
+6,2026-07-03,Kraftwerk Industries,"Teams-Integration funktioniert seit dem letzten Update nicht mehr richtig, Kalender wird nicht synchronisiert.",negative,bug,medium
+7,2026-07-04,Nordwind Consulting,Warum wurde der Preis für die E3-Lizenzen schon wieder erhöht? Das ist innerhalb eines Jahres die zweite Erhöhung.,negative,billing,medium
+8,2026-07-05,上海贸易有限公司,新的管理界面很好用，比以前清晰多了,positive,praise,low
+9,2026-07-05,Baumann Steuerberatung,Die monatliche Abrechnung kam dieses Mal eine Woche zu spät. Für unsere Buchhaltung ist das problematisch.,negative,billing,medium
+10,2026-07-06,CloudFirst GmbH,Everything works fine.,positive,praise,low
+11,2026-07-07,MediCare Praxisverbund,SharePoint ist EXTREM langsam geworden. Dateien öffnen dauert teilweise über eine Minute. Unhaltbar für eine Arztpraxis!,negative,bug,high
+12,2026-07-08,Schröder Immobilien,Können Sie uns ein Angebot für 15 zusätzliche Business-Premium-Lizenzen schicken?,neutral,billing,medium
+13,2026-07-08,FinTech Labs,"Your API documentation is outdated, the auth endpoints described don't match the actual behavior. Cost us two days of debugging.",negative,bug,high
+14,2026-07-09,Autohaus Winkler,"Mitarbeiter beschweren sich über ständige MFA-Abfragen, teilweise 5x am Tag. Kann man das Intervall anpassen?",negative,feature_request,medium
+15,2026-07-10,Pixel & Code UG,"tbh the onboarding was a mess, nobody told us the DNS changes would take 48h, our email was down for two days",negative,bug,high
+16,2026-07-11,Landgasthof Hirsch,Ich verstehe die neue Rechnung nicht. Was ist der Unterschied zwischen den Positionen 'Exchange Online Plan 1' und 'Exchange Online Kiosk'?,neutral,billing,medium
+17,2026-07-12,VertriebsProfi24,Der Support hat mein Ticket seit 10 Tagen nicht beantwortet. Ticket-Nr. 48213. Das ist inakzeptabel.,negative,other,high
+18,2026-07-13,北京科技公司,服务器上周三宕机两小时，我们损失了不少订单，希望能得到解释和补偿,negative,billing,high
+19,2026-07-14,Elektro Brandt,"Alles bestens, weiter so!",positive,praise,low
+20,2026-07-15,Steinmann & Partner,We're considering moving to a competitor unless the pricing for our tenant improves. Current renewal quote is 30% above market.,negative,billing,high
+21,2026-07-16,Yoga Studio Balance,"Die neue Buchungsintegration mit Outlook ist super, unsere Kunden lieben es!",positive,praise,low
+22,2026-07-17,Massivbau Krüger,"OneDrive synchronisiert bei zwei Mitarbeitern nicht, Rest vom Team hat keine Probleme. Nicht dringend, aber nervig.",negative,bug,medium
+23,2026-07-18,Praxis Dr. Sommerfeld,"Bitte rufen Sie mich zurück wegen der Vertragsverlängerung, am besten vormittags.",neutral,billing,medium
+24,2026-07-19,Digital Nomads GmbH,Copilot lizenzen wurden doppelt abgerechnet UND das Portal zeigt falsche Nutzerzahlen. Zwei Probleme in einer Woche!,negative,billing,high
+25,2026-07-20,Weingut Hoffmann,👍,positive,praise,low

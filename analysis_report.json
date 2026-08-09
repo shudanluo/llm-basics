@@ -1,0 +1,19 @@
+{
+  "summary": "Customer sentiment is predominantly negative, with 14 out of 25 responses expressing dissatisfaction — a 56% negative rate that signals systemic service delivery issues. Critical problems span billing accuracy, authentication outages, performance degradation, and support responsiveness, affecting customers across multiple industries. Immediate intervention is required to prevent churn, particularly among high-risk accounts already evaluating competitors.",
+  "top_issues": [
+    "Billing and invoicing errors: Multiple customers (TechStart Berlin, Digital Nomads GmbH) report incorrect charges, duplicate billing, and portal data discrepancies, indicating a systemic problem in the billing pipeline",
+    "Service availability and performance: Authentication failures (Hansen Logistics, AADSTS50076 affecting entire teams), SharePoint latency (MediCare Praxisverbund), and a two-hour server outage (Beijing Tech Company) point to recurring infrastructure reliability gaps",
+    "Support responsiveness and onboarding communication failures: An unanswered ticket for 10 days (VertriebsProfi24 #48213), outdated API documentation causing two lost developer days (FinTech Labs), and undisclosed DNS propagation delays during onboarding (Pixel & Code UG) reveal critical gaps in proactive customer communication"
+  ],
+  "anomalies": [
+    "Hansen Logistics: A complete team-wide login failure with error AADSTS50076 reported as of this morning — this is an active, ongoing outage requiring immediate escalation to the Azure AD/Entra ID support team",
+    "Steinmann & Partner: Customer has explicitly stated intent to switch to a competitor due to a renewal quote 30% above market rate — churn risk is imminent and requires urgent commercial intervention from account management",
+    "北京科技公司 (Beijing Tech Company): Reports a two-hour server outage last Wednesday with order losses and is requesting both an explanation and financial compensation — this constitutes a potential SLA breach and legal/contractual liability",
+    "VertriebsProfi24: Ticket #48213 has gone unanswered for 10 days — this is a severe breach of standard SLA response commitments and requires immediate escalation and a personal apology from a senior support manager"
+  ],
+  "recommended_actions": [
+    "Initiate an emergency billing audit within 48 hours covering all accounts flagged for invoicing issues (TechStart Berlin, Digital Nomads GmbH), and establish a dedicated billing reconciliation contact for affected customers to prevent further trust erosion and potential disputes",
+    "Assign dedicated Customer Success Managers to all high-churn-risk accounts (Steinmann & Partner, 北京科技公司, VertriebsProfi24) within 24 hours — for Steinmann & Partner, prepare a revised commercial proposal; for 北京科技公司, initiate an SLA breach review and compensation assessment; for VertriebsProfi24, escalate ticket #48213 immediately with a senior engineer",
+    "Conduct a cross-functional post-mortem on onboarding and documentation processes: update API authentication documentation (FinTech Labs), implement mandatory pre-migration communication checklists covering DNS propagation timelines (Pixel & Code UG), and review MediCare Praxisverbund's SharePoint environment for performance bottlenecks given the critical nature of medical practice operations"
+  ]
+}
