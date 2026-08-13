@@ -1,6 +1,9 @@
 from sentence_transformers import SentenceTransformer
 import chromadb
 from documents import DOCS
+import anthropic
+
+client = anthropic.Anthropic()
 
 model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
 
@@ -41,9 +44,9 @@ if __name__ == "__main__":
     print(f"总共切出 {len(all_chunks)} 个chunk")
 
     # 第2步：建一个 ChromaDB 数据库（存在本地文件夹里）
-    client = chromadb.PersistentClient(path="./chroma_db")
-    collection = client.get_or_create_collection("it_support_docs")
-
+    db_client = chromadb.PersistentClient(path="./chroma_db")
+    collection = db_client.get_or_create_collection("it_support_docs")
+    
     # 第3步：把所有chunk转成向量，存进去
     embeddings = model.encode(all_chunks).tolist()   # 批量转向量
     collection.add(
@@ -57,11 +60,11 @@ if __name__ == "__main__":
     # 第4步：测试检索——提一个问题，看能不能找到相关的chunk
     # 第4步：多个测试问题，验证检索准确率
     test_queries = [
-        "Nutzer bekommt MFA Fehler beim Login",           # 应该命中 doc1 (Login)
-        "Warum wurde ich doppelt abgerechnet?",            # 应该命中 doc2 (Abrechnung)
-        "SharePoint lädt sehr langsam",                     # 应该命中 doc3 (SharePoint)
-        "Kann ich beim Vertrag noch verhandeln?",           # 应该命中 doc4 (Vertrag)
-        "Was ist das Wetter heute in Frankfurt?",           # 不相关问题，看系统怎么处理
+        "What happens when I exceed my Fabric capacity?",       # 应该命中 doc4 (容量限流)
+        "How do I authenticate to the Fabric REST API?",         # 应该命中 doc5 (REST API)
+        "What is Direct Lake mode used for?",                    # 应该命中 doc2 (Direct Lake)
+        "How does Dataflow Gen2 write data to a Lakehouse?",     # 应该命中 doc3 (Dataflow Gen2)
+        "What's the best pizza topping?",                        # 不相关问题
     ]
 
     for query in test_queries:
@@ -78,3 +81,26 @@ if __name__ == "__main__":
         top_distance = results["distances"][0][0]
         print(f"命中文档: {top_meta['title']} (距离: {top_distance:.3f})")
         print(f"内容: {top_doc[:100]}...")
+
+
+def ask(question, n_chunks=3):
+    # 检索最相关的几个chunk（你已经会的）
+    query_embedding = model.encode(question).tolist()
+    results = collection.query(query_embeddings=[query_embedding], n_results=n_chunks)
+    
+    retrieved_chunks = results["documents"][0]
+    context = "\n\n".join(retrieved_chunks)   # 把检索到的原文拼成一段
+    
+    # 喂给LLM生成回答（就是项目1那套"拼material发给LLM"）
+    response = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=1024,
+        temperature=0,
+        system="""你是Microsoft Fabric技术支持助手。只根据用户提供的上下文回答问题。
+如果上下文里没有足够信息回答问题，明确说"根据现有文档我无法回答这个问题"，不要编造。""",
+        messages=[{"role": "user", "content": f"上下文:\n{context}\n\n问题: {question}"}]
+    )
+    return next(b.text for b in response.content if b.type == "text")
+
+# 测试
+print(ask("What's the best pizza topping?"))
