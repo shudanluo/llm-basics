@@ -1,0 +1,19 @@
+name: Check for leaked API keys
+
+on: push
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Search for API key pattern
+        run: |
+          if grep -r "sk-ant-" --include="*.py" .; then
+            echo "danger: possible API key found in code!"
+            exit 1
+          else
+            echo "no api key pattern found, good."
+          fi
