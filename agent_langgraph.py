@@ -5,8 +5,16 @@ from langgraph.graph import StateGraph, END
 from langchain_anthropic import ChatAnthropic
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import tool
+from langfuse import Langfuse
 
 # ===== 复用你已有的检索工具（一字没改） =====
+langfuse = Langfuse(
+    public_key="pk-lf-0affb72d-42b6-4681-a03c-097aeed3b8ac",
+    secret_key="sk-lf-2cb9c4e3-b599-451c-8e06-0913ac288f34",
+    host="https://cloud.langfuse.com"
+)
+
+print("AUTH CHECK RESULT:", langfuse.auth_check())
 model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
 db_client = chromadb.PersistentClient(path="./chroma_db")
 collection = db_client.get_collection("it_support_docs")
@@ -80,11 +88,30 @@ graph.add_edge("call_tools", "call_model")
 app = graph.compile()
 
 # ===== 测试 =====
+# ===== 测试 =====
 def run_agent(question):
+    print("STEP 1: about to create trace")
+    trace = langfuse.trace(name="fabric-agent-query", input=question)
+    print("STEP 2: trace created")
+    
     result = app.invoke({"messages": [HumanMessage(content=question)]})
-    return result["messages"][-1].content
+    print("STEP 3: agent finished")
+    
+    answer = result["messages"][-1].content
+    
+    trace.update(output=answer)
+    langfuse.flush()
+    
+    return answer
 
 if __name__ == "__main__":
     print(run_agent("15乘以23等于多少？"))
     print("\n" + "="*50 + "\n")
     print(run_agent("What happens when I exceed my Fabric capacity?"))
+
+
+    import time
+    print("等待数据发送到Langfuse...")
+    langfuse.flush()
+    time.sleep(3)
+    print("完成")
