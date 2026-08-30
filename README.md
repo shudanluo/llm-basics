@@ -45,3 +45,24 @@ until it gathered enough context (ReAct pattern in action).
   routing between "think" and "act" steps) vs the hand-written version
 
 **Run:** `python agent_test.py` or `python agent_langgraph.py`
+
+
+## Project 3: Data Analyst Agent (self-correcting on dirty data)
+
+An agent that answers natural-language questions about business data (MRR/revenue) 
+by autonomously writing and executing Pandas code — not a fixed query template.
+
+- **Tool**: `execute_python` — runs agent-generated code via `exec()` (captures 
+  `print()` output through `redirect_stdout`), works on a fresh `df.copy()` each 
+  call so failed attempts don't corrupt state for the next one
+- **Reflection in action**: tested against a dataset with intentional dirty data 
+  (missing values, a non-numeric string in a numeric column). Without any hint in 
+  the prompt, the agent: (1) tried a naive `.sum()` and hit a real `TypeError`, 
+  (2) diagnosed the issue itself by inspecting `dtypes` and sampling the column, 
+  (3) rewrote the code with `pd.to_numeric(..., errors='coerce')` and succeeded — 
+  a full observe → diagnose → fix loop, not a scripted retry
+- Final answers include both the number and a short business interpretation 
+  (e.g. flagging which industries are underperforming, noting how many records 
+  were excluded due to data quality issues)
+
+**Run:** `python data_analyst_agent.py`

@@ -1,0 +1,36 @@
+customer_id,customer_name,industry,region,product,mrr,signup_date,status,churn_date
+C001,Müller & Söhne GmbH,Manufacturing,DACH,Business Premium,1250,2024-03-15,active,
+C002,TechStart Berlin,Software,DACH,E3,3200,2024-01-10,active,
+C003,Hansen Logistics,Logistics,DACH,Business Premium,890,2023-11-01,churned,2026-02-14
+C004,GreenEnergy AG,Energy,DACH,E5,4500,2023-06-20,active,
+C005,DataFlow Solutions,Software,DACH,E3,2100,2024-05-01,active,
+C006,Kraftwerk Industries,Manufacturing,DACH,Business Premium,1780,2023-09-12,active,
+C007,Nordwind Consulting,Consulting,DACH,E3,950,2024-02-28,churned,2026-01-05
+C008,Baumann Steuerberatung,Finance,DACH,Business Premium,620,2023-12-01,active,
+C009,CloudFirst GmbH,Software,DACH,E5,5100,2023-04-15,active,
+C010,MediCare Praxisverbund,Healthcare,DACH,Business Premium,,2024-04-10,active,
+C011,Schröder Immobilien,Real Estate,DACH,E3,1400,2023-08-22,active,
+C012,FinTech Labs,Finance,DACH,E5,6200,2023-02-01,active,
+C013,Autohaus Winkler,Automotive,DACH,Business Premium,780,2024-06-15,active,
+C014,Pixel & Code UG,Software,DACH,E3,1100,2024-07-01,churned,2026-03-01
+C015,Landgasthof Hirsch,Hospitality,DACH,Business Premium,340,2023-10-05,active,
+C016,VertriebsProfi24,Sales,DACH,E3,1650,2023-07-18,active,
+C017,Elektro Brandt,Manufacturing,DACH,Business Premium,560,2024-01-25,active,
+C018,Steinmann & Partner,Consulting,DACH,E5,3800,2022-11-11,active,
+C019,Yoga Studio Balance,Wellness,DACH,Business Premium,190,2024-03-30,active,
+C020,Massivbau Krüger,Construction,DACH,Business Premium,920,2023-05-14,active,
+C021,Praxis Dr. Sommerfeld,Healthcare,DACH,E3,1050,2023-09-01,active,
+C022,Digital Nomads GmbH,Software,DACH,E3,1890,2024-02-14,active,
+C023,Weingut Hoffmann,Agriculture,DACH,Business Premium,410,2023-06-01,churned,2025-12-20
+C024,Nordbahn Spedition,Logistics,DACH,E5,4100,2022-09-15,active,
+C025,BrainWave Analytics,Software,DACH,E5,5600,2023-03-20,active,
+C026,Rathaus Apotheke,Healthcare,DACH,Business Premium,480,2024-05-10,active,
+C027,Solar Solutions Süd,Energy,DACH,E3,2300,2023-12-15,active,
+C028,Kanzlei Bergmann,Legal,DACH,Business Premium,730,2024-04-01,active,
+C029,SmartRetail GmbH,Retail,DACH,E3,1970,2023-08-08,churned,2026-04-11
+C030,Ingenieurbüro Falk,Engineering,DACH,E3,1320,2023-11-22,active,
+C031,Frische Küche Catering,Hospitality,DACH,Business Premium,ERROR,2024-06-20,active,
+C032,Alpen Transport AG,Logistics,DACH,E5,4900,2022-12-01,active,
+C033,Wohnbau Reiter,Real Estate,DACH,Business Premium,860,2023-10-18,active,
+C034,MedTech Innovations,Healthcare,DACH,E5,5300,2023-01-15,active,
+C035,Bäckerei Sonnenschein,Retail,DACH,Business Premium,220,2024-03-05,active,
