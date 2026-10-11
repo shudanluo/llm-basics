@@ -7,7 +7,12 @@ client = anthropic.Anthropic()
 
 model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
 
-def chunk_text(text, chunk_size=200, overlap=50):
+
+# 第2步：建一个 ChromaDB 数据库（存在本地文件夹里）
+db_client = chromadb.PersistentClient(path="./chroma_db")
+collection = db_client.get_or_create_collection("it_support_docs")
+
+def chunk_text(text, chunk_size=500, overlap=100):
     """
     把长文本切成固定长度的小块，块之间有重叠。
     text: 原始文本
@@ -43,9 +48,7 @@ if __name__ == "__main__":
 
     print(f"总共切出 {len(all_chunks)} 个chunk")
 
-    # 第2步：建一个 ChromaDB 数据库（存在本地文件夹里）
-    db_client = chromadb.PersistentClient(path="./chroma_db")
-    collection = db_client.get_or_create_collection("it_support_docs")
+    
     
     # 第3步：把所有chunk转成向量，存进去
     embeddings = model.encode(all_chunks).tolist()   # 批量转向量
@@ -83,7 +86,7 @@ if __name__ == "__main__":
         print(f"内容: {top_doc[:100]}...")
 
 
-def ask(question, n_chunks=3):
+def ask(question, n_chunks=6):
     # 检索最相关的几个chunk（你已经会的）
     query_embedding = model.encode(question).tolist()
     results = collection.query(query_embeddings=[query_embedding], n_results=n_chunks)
@@ -96,11 +99,12 @@ def ask(question, n_chunks=3):
         model="claude-sonnet-4-6",
         max_tokens=1024,
         temperature=0,
-        system="""你是Microsoft Fabric技术支持助手。只根据用户提供的上下文回答问题。
-如果上下文里没有足够信息回答问题，明确说"根据现有文档我无法回答这个问题"，不要编造。""",
-        messages=[{"role": "user", "content": f"上下文:\n{context}\n\n问题: {question}"}]
+        system="""You are a Microsoft Fabric technical support assistant. Answer only based on the provided context.
+If the context does not contain enough information, say "I cannot answer this based on the available documentation." Do not make things up.
+Answer in the same language as the question.""",
+        messages=[{"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"}]
     )
     return next(b.text for b in response.content if b.type == "text")
 
 # 测试
-print(ask("What's the best pizza topping?"))
+    print(ask("What's the best pizza topping?"))
